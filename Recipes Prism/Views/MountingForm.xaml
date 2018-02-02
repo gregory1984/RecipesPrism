@@ -1,0 +1,241 @@
+﻿<UserControl
+    x:Class="Recipes_Prism.Views.MountingForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Loaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel>
+        <!--
+            :: Filters ::
+        -->
+        <GroupBox DockPanel.Dock="Top" Header="Filtrowanie">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="2"
+                    VerticalContentAlignment="Center"
+                    Controls:TextBoxHelper.ClearTextButton="True"
+                    Controls:TextBoxHelper.SelectAllOnFocus="True"
+                    Controls:TextBoxHelper.Watermark="Nazwa składnika"
+                    MaxLength="200"
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding FindComponent}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="60"
+                    Margin="2"
+                    Command="{Binding AddComponent}"
+                    Content="Dodaj" />
+            </Grid>
+        </GroupBox>
+        <!--
+            :: Mounts - with bottom groupbox border hack :-D ::
+        -->
+        <Border
+            Margin="5"
+            Padding="0"
+            BorderBrush="{Binding ElementName=GroupBoxMounts, Path=BorderBrush}"
+            BorderThickness="0,0,0,1"
+            DockPanel.Dock="Bottom">
+            <GroupBox
+                Name="GroupBoxMounts"
+                Margin="0"
+                BorderThickness="1,1,1,0"
+                Header="{Binding SelectedProductName, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid
+                    AlternatingRowBackground="WhiteSmoke"
+                    AutoGenerateColumns="False"
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding MountsView, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+                    RowBackground="White"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    SelectedItem="{Binding SelectedMount, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionMode="Single">
+                    <!--
+                        :: Selected row style ::
+                    -->
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Yellow" />
+                                    <Setter Property="BorderBrush" Value="Yellow" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <!--
+                        :: Columns ::
+                    -->
+                    <DataGrid.Columns>
+                        <!--
+                            :: No. ::
+                        -->
+                        <DataGridTemplateColumn Header="Lp" SortMemberPath="No">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        Margin="3"
+                                        Padding="0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{Binding No, UpdateSourceTrigger=PropertyChanged}"
+                                        FontSize="12" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--
+                            :: ComponentName ::
+                        -->
+                        <DataGridTemplateColumn
+                            Width="9*"
+                            Header="Nazwa"
+                            SortMemberPath="ComponentName">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="3"
+                                            Padding="0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Content="{Binding ComponentName, UpdateSourceTrigger=PropertyChanged}"
+                                            FontSize="12" />
+                                        <StackPanel
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Orientation="Horizontal">
+                                            <Button
+                                                Width="25"
+                                                Margin="2"
+                                                Command="{Binding DataContext.DeleteComponent, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                IsEnabled="{Binding CanBeDeleted, UpdateSourceTrigger=PropertyChanged}"
+                                                ToolTip="Usuń">
+                                                <Image Width="14" Source="/Recipes Prism;component/Images/Icons/Delete.png" />
+                                            </Button>
+                                            <Button
+                                                Width="25"
+                                                Margin="2"
+                                                Command="{Binding DataContext.EditComponent, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                ToolTip="Zmień">
+                                                <Image Width="14" Source="/Recipes Prism;component/Images/Icons/Edit.png" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--
+                            :: IsChecked ::
+                        -->
+                        <DataGridTemplateColumn
+                            Width="2*"
+                            Header="Dodaj"
+                            SortMemberPath="IsChecked">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--
+                            :: MeasureCount ::
+                        -->
+                        <DataGridTemplateColumn
+                            Width="2*"
+                            Header="Ilość"
+                            SortMemberPath="MeasureCount">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Controls:NumericUpDown
+                                        Margin="2"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Left"
+                                        HasDecimals="True"
+                                        HideUpDownButtons="False"
+                                        Interval="0.5"
+                                        Minimum="0"
+                                        Value="{Binding MeasureCount, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--
+                            :: Measure ::
+                        -->
+                        <DataGridTemplateColumn
+                            Width="2*"
+                            Header="Miara"
+                            SortMemberPath="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox
+                                        Width="85"
+                                        VerticalContentAlignment="Center"
+                                        DisplayMemberPath="Name"
+                                        IsEditable="True"
+                                        IsReadOnly="True"
+                                        ItemsSource="{Binding Measures}"
+                                        SelectedItem="{Binding SelectedMeasure, UpdateSourceTrigger=PropertyChanged}"
+                                        Text="Wybierz..." />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--
+                            :: ItemCount ::
+                        -->
+                        <DataGridTemplateColumn
+                            Width="2*"
+                            Header="Szt."
+                            SortMemberPath="ItemCount">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Controls:NumericUpDown
+                                        Margin="2"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Left"
+                                        HasDecimals="False"
+                                        HideUpDownButtons="False"
+                                        Interval="1"
+                                        Minimum="0"
+                                        Value="{Binding ItemCount, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Border>
+    </DockPanel>
+</UserControl>

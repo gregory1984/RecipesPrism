@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{99C9E82C-C594-446D-AA59-8FFBC43AD226}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Recipes_Prism</RootNamespace>
+    <AssemblyName>Recipes Prism</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\Exec\Exec.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.6.3.0\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Recipes Model">
+      <HintPath>..\Recipes Model\bin\Debug\Recipes Model.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Enums\WindowMode.cs" />
+    <Compile Include="Events\ComponentsDictionaryUpdatedEvent.cs" />
+    <Compile Include="Events\MeasuresDictionaryUpdatedEvent.cs" />
+    <Compile Include="Events\OrderAddedEditedEvent.cs" />
+    <Compile Include="Events\OrderDeletedEvent.cs" />
+    <Compile Include="Events\Pagination\GoToThePageEvent.cs" />
+    <Compile Include="Events\Payloads\MountsOfProductCollectedPayload.cs" />
+    <Compile Include="Events\MountsOfProductCollectedEvent.cs" />
+    <Compile Include="Events\ComponentOfSelectedMountUpdatedEvent.cs" />
+    <Compile Include="Events\OrderSearchCriteriaChangedEvent.cs" />
+    <Compile Include="Events\Payloads\OrderSearchCriteriaChangedPayload.cs" />
+    <Compile Include="Events\OrderSelectedEvent.cs" />
+    <Compile Include="Events\Payloads\OrderSelectedPayload.cs" />
+    <Compile Include="Events\Payloads\ComponentOfSelectedMountUpdatedPayload.cs" />
+    <Compile Include="Events\Payloads\ProductMountedUnmountedPayload.cs" />
+    <Compile Include="Events\Payloads\ProductSelectedPayload.cs" />
+    <Compile Include="Events\Payloads\PrimaryOrderDataCollectedPayload.cs" />
+    <Compile Include="Events\Payloads\RecipesOfOrderCollectedPayload.cs" />
+    <Compile Include="Events\ProductsDictionaryUpdatedEvent.cs" />
+    <Compile Include="Events\ProductSelectedEvent.cs" />
+    <Compile Include="Events\QuitApplicationEvent.cs" />
+    <Compile Include="Events\RecipesOfOrderCollectedEvent.cs" />
+    <Compile Include="Events\RestartApplicationEvent.cs" />
+    <Compile Include="Events\ShowAboutWindowEvent.cs" />
+    <Compile Include="Events\ShowAddEditOrderWindowEvent.cs" />
+    <Compile Include="Events\ShowBackupWindowEvent.cs" />
+    <Compile Include="Events\ShowDictionariesWindowEvent.cs" />
+    <Compile Include="Events\ShowDictionaryEditWindowEvent.cs" />
+    <Compile Include="Events\ShowHideFiltersEvent.cs" />
+    <Compile Include="Events\ShowMountingWindowEvent.cs" />
+    <Compile Include="Events\PrimaryOrderDataCollectedEvent.cs" />
+    <Compile Include="Helpers\ExcelReports.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\UnityNames.cs" />
+    <Compile Include="Helpers\VersionData.cs" />
+    <Compile Include="ViewModels\AboutWindowViewModel.cs" />
+    <Compile Include="ViewModels\AddEditOrderWindowViewModel.cs" />
+    <Compile Include="ViewModels\BackupWindowViewModel.cs" />
+    <Compile Include="ViewModels\ComponentDictionaryViewModel.cs" />
+    <Compile Include="ViewModels\ComponentsOfProductViewModel.cs" />
+    <Compile Include="ViewModels\ComponentViewModel.cs" />
+    <Compile Include="ViewModels\DictionariesWindowViewModel.cs" />
+    <Compile Include="ViewModels\DictionaryBaseViewModel.cs" />
+    <Compile Include="ViewModels\DictionaryEditWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainToolBarViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowFiltersViewModel.cs" />
+    <Compile Include="ViewModels\MeasureDictionaryViewModel.cs" />
+    <Compile Include="ViewModels\MeasureViewModel.cs" />
+    <Compile Include="ViewModels\MountingFormViewModel.cs" />
+    <Compile Include="ViewModels\MountingWindowViewModel.cs" />
+    <Compile Include="ViewModels\MountViewModel.cs" />
+    <Compile Include="ViewModels\OrdersGridViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\PaginationViewModel.cs" />
+    <Compile Include="ViewModels\PrimaryOrderDataViewModel.cs" />
+    <Compile Include="ViewModels\ProductDictionaryViewModel.cs" />
+    <Compile Include="Events\ProductMountedUnmountedEvent.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\RecipesGridViewModel.cs" />
+    <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\SnapshotViewModel.cs" />
+    <Compile Include="Views\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEditOrderWindow.xaml.cs">
+      <DependentUpon>AddEditOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BackupWindow.xaml.cs">
+      <DependentUpon>BackupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComponentDictionary.xaml.cs">
+      <DependentUpon>ComponentDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComponentsOfProduct.xaml.cs">
+      <DependentUpon>ComponentsOfProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DictionariesWindow.xaml.cs">
+      <DependentUpon>DictionariesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DictionaryEditWindow.xaml.cs">
+      <DependentUpon>DictionaryEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainToolBar.xaml.cs">
+      <DependentUpon>MainToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindowFilters.xaml.cs">
+      <DependentUpon>MainWindowFilters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MeasureDictionary.xaml.cs">
+      <DependentUpon>MeasureDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MountingForm.xaml.cs">
+      <DependentUpon>MountingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MountingWindow.xaml.cs">
+      <DependentUpon>MountingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersGrid.xaml.cs">
+      <DependentUpon>OrdersGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrimaryOrderData.xaml.cs">
+      <DependentUpon>PrimaryOrderData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductDictionary.xaml.cs">
+      <DependentUpon>ProductDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipesGrid.xaml.cs">
+      <DependentUpon>RecipesGrid.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddEditOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BackupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ComponentDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ComponentsOfProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DictionariesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DictionaryEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Events\ExceptionOccuredEvent.cs" />
+    <Compile Include="Helpers\MessageBoxes.cs" />
+    <Compile Include="Images\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\MainToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindowFilters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MeasureDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MountingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MountingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PrimaryOrderData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipesGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Images\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exec\Exec.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Dictionary.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Forklift.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Filters.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Database.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Bulb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Quit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Accept.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Mount.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Unmount.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Html.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Printer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Next.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Previous.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\First.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Last.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Backup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Recover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

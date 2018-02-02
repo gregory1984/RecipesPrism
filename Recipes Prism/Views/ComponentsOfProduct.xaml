@@ -1,0 +1,177 @@
+﻿<UserControl
+    x:Class="Recipes_Prism.Views.ComponentsOfProduct"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Loaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <GroupBox Header="Składniki produktu">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <!--
+                :: Components of product ::
+            -->
+            <DataGrid
+                Grid.Row="0"
+                VerticalAlignment="Stretch"
+                AlternatingRowBackground="WhiteSmoke"
+                AutoGenerateColumns="False"
+                IsSynchronizedWithCurrentItem="True"
+                ItemsSource="{Binding Mounts, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+                RowBackground="White"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                SelectionMode="Single">
+                <!--
+                    :: Selected row style ::
+                -->
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Yellow" />
+                                <Setter Property="BorderBrush" Value="Yellow" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <!--
+                    :: Columns ::
+                -->
+                <DataGrid.Columns>
+                    <!--
+                        :: No. ::
+                    -->
+                    <DataGridTemplateColumn Header="Lp" SortMemberPath="No">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label
+                                    Margin="3"
+                                    Padding="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding No}"
+                                    FontSize="12" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--
+                        :: Component name ::
+                    -->
+                    <DataGridTemplateColumn
+                        Width="3*"
+                        Header="Nazwa"
+                        SortMemberPath="ComponentName">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding ComponentName}"
+                                    FontSize="12" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--
+                        :: Meaure count ::
+                    -->
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Ilość"
+                        SortMemberPath="MeasureCount">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding MeasureCount}"
+                                    FontSize="12" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--
+                        :: Measure name ::
+                    -->
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Miara"
+                        SortMemberPath="MeasureName">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding MeasureName}"
+                                    FontSize="12" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--
+                        :: Item count ::
+                    -->
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Ilość szt."
+                        SortMemberPath="ItemCount">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding ItemCount}"
+                                    FontSize="12" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--
+                :: Sum grouped by measure ::
+            -->
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Text="Razem: " />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Text="{Binding SumGroupedByMeasure, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <!--
+                :: Sum unit independent ::
+            -->
+            <StackPanel
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Text="Razem bez jednostek: " />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Text="{Binding SumUnitIndependent, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+        </Grid>
+    </GroupBox>
+</UserControl>

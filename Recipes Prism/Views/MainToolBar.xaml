@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="Recipes_Prism.Views.MainToolBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    FontFamily="Segoe UI">
+    <ToolBarTray
+        Grid.Row="0"
+        Grid.Column="0"
+        Background="Transparent">
+        <ToolBar Background="Transparent">
+            <Button Command="{Binding ShowDictionariesWindow}">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="45"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Recipes Prism;component/Images/Icons/Dictionary.png" />
+                    <Label VerticalAlignment="Center" Content="Słowniki" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding ShowMountingWindow}">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="45"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Recipes Prism;component/Images/Icons/Forklift.png" />
+                    <Label VerticalAlignment="Center" Content="Montowanie" />
+                </StackPanel>
+            </Button>
+        </ToolBar>
+        <ToolBar Background="Transparent">
+            <Button Command="{Binding Quit}">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="45"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Recipes Prism;component/Images/Icons/Quit.png" />
+                    <Label VerticalAlignment="Center" Content="Wyjście" />
+                </StackPanel>
+            </Button>
+        </ToolBar>
+        <ToolBar Background="Transparent">
+            <Button Command="{Binding ShowBackupWindow}">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="45"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Recipes Prism;component/Images/Icons/Database.png" />
+                    <Label VerticalAlignment="Center" Content="Kopia zapasowa" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding ShowHideFilters}">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="45"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Recipes Prism;component/Images/Icons/Filters.png" />
+                    <Label VerticalAlignment="Center" Content="Filtry" />
+                </StackPanel>
+            </Button>
+        </ToolBar>
+        <ToolBar Background="Transparent">
+            <Button Command="{Binding ShowAboutWindow}">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        Width="45"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Recipes Prism;component/Images/Icons/Bulb.png" />
+                    <Label VerticalAlignment="Center" Content="O programie" />
+                </StackPanel>
+            </Button>
+        </ToolBar>
+    </ToolBarTray>
+</UserControl>

@@ -1,0 +1,66 @@
+﻿<Controls:MetroWindow
+    x:Class="Recipes_Prism.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:views="clr-namespace:Recipes_Prism.Views"
+    Title="Receptura materiałowa"
+    Width="1200"
+    Height="800"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    GlowBrush="{DynamicResource AccentColorBrush}"
+    Icon="/Recipes Prism;component/Images/Exec/Exec.ico"
+    ShowIconOnTitleBar="False"
+    WindowStartupLocation="CenterScreen">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Loaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <!--
+        :: Main grid ::
+    -->
+    <Grid Margin="5" UseLayoutRounding="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--
+            :: ToolBar ::
+        -->
+        <ContentControl
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <views:MainToolBar />
+        </ContentControl>
+        <!--
+            :: Searching filters ::
+        -->
+        <ContentControl Grid.Row="1" Grid.Column="0">
+            <views:MainWindowFilters />
+        </ContentControl>
+        <!--
+            :: Components of product ::
+        -->
+        <ContentControl Grid.Row="2" Grid.Column="0">
+            <views:ComponentsOfProduct />
+        </ContentControl>
+        <!--
+            :: Orders ::
+        -->
+        <ContentControl
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1">
+            <views:OrdersGrid />
+        </ContentControl>
+    </Grid>
+</Controls:MetroWindow>
