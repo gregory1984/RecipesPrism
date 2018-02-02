@@ -1,1 +1,1 @@
-# RecipesPrism
+# Recipes - Prism
