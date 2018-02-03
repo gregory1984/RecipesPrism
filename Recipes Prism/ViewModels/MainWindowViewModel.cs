@@ -24,7 +24,12 @@ namespace Recipes_Prism.ViewModels
         {
             get => loaded ?? (loaded = new DelegateCommand(() =>
             {
-                eventAggregator.ExecuteSafety(() => databaseService.CheckConnection());
+                eventAggregator.ExecuteSafety(() =>
+                {
+                    databaseService.CheckConnection();
+                    databaseService.Initialize();
+                });
+
                 eventAggregator.GetEvent<ExceptionOccuredEvent>().Subscribe(ex => ExceptionOccuredAction?.Invoke(ex));
                 eventAggregator.GetEvent<ShowDictionariesWindowEvent>().Subscribe(() => ShowDictionariesWindowAction?.Invoke());
                 eventAggregator.GetEvent<ShowMountingWindowEvent>().Subscribe(() => ShowMountingWindowAction?.Invoke());
